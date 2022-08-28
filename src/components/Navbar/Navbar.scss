@@ -1,0 +1,15 @@
+.navbar-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: black;
+  height: 40px;
+
+  & h4 {
+    font-family: "Dancing Script", cursive;
+    color: #e5e5e5;
+    margin: 0;
+    font-size: 17px;
+    letter-spacing: 6px;
+  }
+}

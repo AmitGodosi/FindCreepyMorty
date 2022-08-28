@@ -1,0 +1,16 @@
+.table-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  letter-spacing: 1px;
+  margin-top: 24px;
+  height: calc((100vh - 40px) / 7 * 5);
+  .table-box {
+    gap: 3px;
+    font-family: "Noto Sans Mono", monospace;
+    width: 50%;
+    height: 100%;
+    display: flex;
+    flex-wrap: wrap;
+  }
+}
