@@ -45,6 +45,7 @@ export default function Charts({ characterName, episodesLength }: Props) {
 						></Grid>
 					</Grid>
 					<Grid className="chart-bar__label">{barHight}</Grid>
+					<Grid className="chart-bar__label">{selectedCharacter?.episode?.length} / {episodesLength}</Grid>
 				</Grid>
 			</Grid>
 			<Grid className="chart-content-bottom">

@@ -1,13 +1,12 @@
 import { useEffect, useState } from "react";
 import { Grid } from "@material-ui/core";
-import Navbar from "../../components/Navbar/Navbar";
 import Table from "../../components/Table/Table";
 import { axiosInstance } from "../../config";
 import { Character } from "../../interface";
 import "./Home.scss";
 
 type Props = {
-	location?: string;
+	location: string;
 };
 
 export default function Home({ location }: Props) {
@@ -51,12 +50,9 @@ export default function Home({ location }: Props) {
 
 	return (
 		<Grid className="home-page">
-			<Navbar />
-			<Grid className="page-content">
-				<Table character={unpopularCharacter} dimension={dimension} />
-				<Grid className="img-container">
-					<img src="rmbackground.png" alt="Rick&Morty" />
-				</Grid>
+			<Table character={unpopularCharacter} dimension={dimension} />
+			<Grid className="img-container">
+				<img src="rmbackground.png" alt="Rick&Morty" />
 			</Grid>
 		</Grid>
 	);

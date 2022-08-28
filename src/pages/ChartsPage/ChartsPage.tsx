@@ -1,7 +1,6 @@
 import { Grid } from "@material-ui/core";
 import { useEffect, useState } from "react";
 import Charts from "../../components/Charts/Charts";
-import Navbar from "../../components/Navbar/Navbar";
 import { axiosInstance } from "../../config";
 import "./ChartsPage.scss";
 
@@ -24,18 +23,15 @@ export default function ChartsPage() {
 	];
 	return (
 		<Grid className="charts-page">
-			<Navbar />
-			<Grid className="charts-content">
-				{CharactersForCharts.map((characterName: string) => {
-					return (
-						<Charts
-							key={characterName}
-							characterName={characterName}
-							episodesLength={episodes}
-						/>
-					);
-				})}
-			</Grid>
+			{CharactersForCharts.map((characterName: string) => {
+				return (
+					<Charts
+						key={characterName}
+						characterName={characterName}
+						episodesLength={episodes}
+					/>
+				);
+			})}
 		</Grid>
 	);
 }
