@@ -6,13 +6,14 @@ import "./Table.scss";
 type Props = {
 	character: Character;
 	dimension: string;
+	isMultiple?: boolean;
 };
 
-export default function Table({ character, dimension }: Props) {
-	const { name, origin, episode } = character;
-
+export default function Table({ character, dimension, isMultiple }: Props) {
+	const { name, origin, episode } = character || {};
+	const popularityText = episode?.length === 1 ? 'Appears in 1 episode' : `Appears in ${episode?.length} episodes`
 	return (
-		<Grid className="table-container">
+		<Grid className={isMultiple ? "table-container is-multiple" : "table-container"}>
 			<Grid className="table-box">
 				<TableRow text="Character Name" />
 				<TableRow text={name} />
@@ -20,8 +21,8 @@ export default function Table({ character, dimension }: Props) {
 				<TableRow text={origin?.name} />
 				<TableRow text="Origin Dimension" />
 				<TableRow text={dimension} />
-				<TableRow text="Poplurity" />
-				<TableRow text={`Appears in ${episode?.length} episodes`} />
+				<TableRow text="Popularity" />
+				<TableRow text={popularityText} />
 			</Grid>
 		</Grid>
 	);

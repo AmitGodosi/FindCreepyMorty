@@ -10,8 +10,9 @@ type Props = {
 };
 
 export default function Home({ location }: Props) {
-	const [unpopularCharacter, setUnpopularCharacter] = useState({});
+	const [unpopularCharacters, setUnpopularCharacters] = useState<Character[]>([]);
 	const [dimension, setDimension] = useState('');
+	const [seeMore, setSeeMore] = useState(false);
 
 	useEffect(() => {
 		const fetchLocationData = async () => {
@@ -34,15 +35,16 @@ export default function Home({ location }: Props) {
 					`character/${characters}`
 				);
 				let lessEpisodes = Infinity;
-				let foundCharacter: Character = {};
+				let foundCharacters: Character[] = [];
 				charactersData?.forEach((character: Character) => {
 					const { episode = [] } = character;
-					if (episode?.length < lessEpisodes) {
+					if (episode?.length <= lessEpisodes) {
 						lessEpisodes = episode.length;
-						foundCharacter = character;
+						foundCharacters.push(character);
 					}
 				});
-				setUnpopularCharacter(foundCharacter);
+				const filteredFoundCharacters = foundCharacters?.filter((character: Character) => character?.episode?.length === foundCharacters[foundCharacters?.length - 1]?.episode?.length)
+				setUnpopularCharacters(filteredFoundCharacters);
 			}
 		};
 		fetchLocationData();
@@ -50,7 +52,17 @@ export default function Home({ location }: Props) {
 
 	return (
 		<Grid className="home-page">
-			<Table character={unpopularCharacter} dimension={dimension} />
+			<Grid className="table-wrapper" >
+				{!seeMore && <Table character={unpopularCharacters[0]} dimension={dimension} />}
+				{seeMore && unpopularCharacters?.map((character: Character) => {
+					return (
+						<Table isMultiple key={character?.name} character={character} dimension={dimension} />
+					);
+				})}
+			</Grid>
+			<button onClick={() => setSeeMore(prev => !prev)}>
+				{seeMore ? 'See Less' : 'See More'}
+			</button>
 			<Grid className="img-container">
 				<img src="rmbackground.png" alt="Rick&Morty" />
 			</Grid>

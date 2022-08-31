@@ -2,13 +2,13 @@ import { Grid } from "@material-ui/core";
 import "./TableRow.scss";
 
 type Props = {
-  text?: string;
+	text?: string;
 };
 
 export default function TableRow({ text }: Props) {
-  return (
-    <Grid className="table-row">
-      <p>{text}</p>
-    </Grid>
-  );
+	return (
+		<Grid className="table-row">
+			<p>{text}</p>
+		</Grid>
+	);
 }

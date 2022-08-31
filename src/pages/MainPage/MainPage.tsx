@@ -5,6 +5,7 @@ import Home from '../Home/Home';
 import ChartsPage from '../ChartsPage/ChartsPage';
 import Navbar from '../../components/Navbar/Navbar';
 import './MainPage.scss'
+import { LOCATION } from '../../config';
 
 type Props = {
 	activeTab: string;
@@ -15,7 +16,7 @@ export default class MainPage extends Component<Props> {
 		const { activeTab } = this.props;
 		const { HOME, STATISTICS } = RoutesNames;
 		return {
-			[HOME]: () => <Home location="Earth (C-137)" />,
+			[HOME]: () => <Home location={LOCATION} />,
 			[STATISTICS]: () => <ChartsPage />,
 		}[activeTab]();
 	}

@@ -1,4 +1,5 @@
 export const RoutesPath = {
+	DEFAULT: '/',
 	HOME: '/home',
 	STATISTICS: '/statistics',
 }
