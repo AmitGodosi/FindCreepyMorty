@@ -1,6 +1,6 @@
 import { Grid } from "@material-ui/core";
 import { useEffect, useState } from "react";
-import { axiosInstance } from "../../config";
+import { axiosInstance, LOCATION } from "../../config";
 import { Character } from "../../interface";
 import "./Charts.scss";
 
@@ -20,8 +20,8 @@ export default function Charts({ characterName, episodesLength }: Props) {
 				`character/?name=${characterName}&status=alive`
 			);
 			const { results } = data || [];
-			/* ----------------CHANGE TO REAL CHARACTER-----------------*/
-			setSelectedCharacter(results[0]);
+			const filteredResults = results?.filter((character: Character) => character?.origin?.name === LOCATION)
+			setSelectedCharacter(filteredResults[0] || results[0]);
 		};
 		fetchCharacterInfo();
 	}, [characterName]);
@@ -50,6 +50,7 @@ export default function Charts({ characterName, episodesLength }: Props) {
 			</Grid>
 			<Grid className="chart-content-bottom">
 				<p>{selectedCharacter?.name}</p>
+				<p>{selectedCharacter?.origin?.name}</p>
 			</Grid>
 		</Grid>
 	);
