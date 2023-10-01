@@ -1,5 +1,5 @@
 export const RoutesPath = {
-	DEFAULT: '/',
+	DEFAULT: '*',
 	HOME: '/home',
 	STATISTICS: '/statistics',
 }
